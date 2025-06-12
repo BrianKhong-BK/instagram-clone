@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap"
 
-export default function IconButton({ isTop, isBottom, className }) {
+export default function IconButton({ isTop, isBottom, className, onClick }) {
     let margin = "light"
 
     if (isTop) {
@@ -10,7 +10,7 @@ export default function IconButton({ isTop, isBottom, className }) {
     }
 
     return (
-        <Button variant={margin} style={{ marginBottom: "7px" }}>
+        <Button variant={margin} style={{ marginBottom: "7px" }} onClick={onClick}>
             <i className={className} style={{ fontSize: "24px" }}></i>
         </Button>
     )

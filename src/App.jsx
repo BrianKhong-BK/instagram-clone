@@ -1,14 +1,18 @@
 import { Col, Row, Container, Button } from "react-bootstrap"
-import IconButton from "./components/IconButton"
 import ProfileHeader from "./components/ProfileHeader"
-import { createContext } from "react"
+import { createContext, useState } from "react"
 import { PROFILE_DATA } from "./data"
 import ImageGrid from "./components/ImageGrid"
+import AddPostModal from "./components/AddPostModal"
+import IconButton from "./components/IconButton"
 
 export const ProfileContext = createContext(null)
 
 export default function App() {
+  const [showModal, setShowModal] = useState(false)
 
+  const closeModal = () => setShowModal(false)
+  const openModal = () => setShowModal(true)
 
   return (
     <ProfileContext.Provider value={PROFILE_DATA}>
@@ -21,7 +25,7 @@ export default function App() {
           <IconButton className={"bi bi-film"} />
           <IconButton className={"bi bi-chat"} />
           <IconButton className={"bi bi-heart"} />
-          <IconButton className={"bi bi-plus-square"} />
+          <IconButton className={"bi bi-plus-square"} onClick={openModal} />
           <IconButton className={"bi bi-person-circle"} />
           <IconButton className={"bi bi-list"} isBottom />
         </Col>
@@ -29,6 +33,7 @@ export default function App() {
           <Container>
             <ProfileHeader />
             <ImageGrid />
+            <AddPostModal show={showModal} handleClose={closeModal} />
           </Container>
         </Col>
       </Row>
